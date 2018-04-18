@@ -59,13 +59,16 @@ namespace StudentMeetup2018
             Vector2 endPoint;
             string[] mapData;
 
-            if (ErrCode.Success != ParseArgs(args, out mapData, out startPoint, out endPoint))
-                return;
+			ErrCode code = ParseArgs(args, out mapData, out startPoint, out endPoint);
+            if (ErrCode.Success != code)
+                return code;
 
             MapSolution map = new MapSolution(mapData, startPoint, endPoint);
 
             map.ComputePath();
             map.DisplayMap();
+			
+			return ErrCode.Success;
         }
     }
 }
