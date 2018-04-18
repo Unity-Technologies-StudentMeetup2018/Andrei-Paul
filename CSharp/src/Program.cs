@@ -53,22 +53,22 @@ namespace StudentMeetup2018
             return ErrCode.Success;
         }
 
-        static void Main(string[] args)
+        static int Main(string[] args)
         {
             Vector2 startPoint;
             Vector2 endPoint;
             string[] mapData;
 
-			ErrCode code = ParseArgs(args, out mapData, out startPoint, out endPoint);
+            ErrCode code = ParseArgs(args, out mapData, out startPoint, out endPoint);
             if (ErrCode.Success != code)
-                return code;
+                return (int)code;
 
             MapSolution map = new MapSolution(mapData, startPoint, endPoint);
 
             map.ComputePath();
             map.DisplayMap();
-			
-			return ErrCode.Success;
+
+            return (int)ErrCode.Success;
         }
     }
 }
