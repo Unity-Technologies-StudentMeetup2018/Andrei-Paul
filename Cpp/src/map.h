@@ -82,9 +82,10 @@ public:
 		}
 	}
 
-	void ComputePath()
+	bool ComputePath()
 	{
 		// TODO: Implement solution here
+		return true;
 	}
 
 private:
@@ -93,6 +94,3 @@ private:
 	vector2 m_StartPosition;
 	vector2 m_GoalPosition;
 };
-
-
-
