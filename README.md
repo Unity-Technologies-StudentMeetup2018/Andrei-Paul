@@ -16,9 +16,9 @@ For C#
 
 Input Data:
 - Static 32x32 Grid as text file
-- '#' tile is blocked
-- '.' tile is free
-- Input data is valid
+- '#' character means tile is blocked
+- '.' character means tile is free
+- The supplied grid file file can be assumed to be valid
 
 Execution:
 - pathfind.exe <Relative Map Path> <startX> <startY> <endX> <endY>
