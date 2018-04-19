@@ -16,13 +16,10 @@ namespace PathfindingCSharp
     {
         public const char emptyChar = '.';
         public const char blockedChar = '#';
-        public const char startChar = 's';
-        public const char endChar = 'e';
         public const char invalidChar = '?';
         public const char pathChar = '@';
 
         private char[,] mapPositions;
-        StringBuilder sb;
         Vector2 startPosition;
         Vector2 goalPosition;
 
@@ -52,9 +49,9 @@ namespace PathfindingCSharp
                     int index = (i * mapData.Length) + j;
 
                     if (startPos.x == j && startPos.y == i)
-                        mapPositions[i, j] = startChar;
+                        mapPositions[i, j] = pathChar;
                     else if (endPos.x == j && endPos.y == i)
-                        mapPositions[i, j] = endChar;
+                        mapPositions[i, j] = pathChar;
                     else
                     {
                         switch (mapData[i][j])
@@ -75,7 +72,6 @@ namespace PathfindingCSharp
 
                 }
             }
-            sb = new StringBuilder((mapPositions.Length * mapPositions.Length) + mapPositions.Length); //plus 32 chars for newlines
         }
 
         private bool IsBlocked(Vector2 position)
@@ -83,9 +79,15 @@ namespace PathfindingCSharp
             return mapPositions[position.y, position.x] == blockedChar;
         }
 
-        private void UpdateStringRepresentation()
+        public void DisplayMap()
         {
-            sb.Clear();
+            Console.Clear();
+            Console.WriteLine(SolutionToString());
+        }
+
+        public string SolutionToString()
+        {
+            StringBuilder sb = new StringBuilder(mapPositions.Length + mapPositions.GetLength(0)); //add extra space for the new lines
 
             for (int i = 0; i < mapPositions.GetLength(0); ++i)
             {
@@ -95,18 +97,7 @@ namespace PathfindingCSharp
                 }
                 sb.Append('\n');
             }
-        }
 
-        public void DisplayMap()
-        {
-            Console.Clear();
-            UpdateStringRepresentation();
-            Console.WriteLine(sb);
-        }
-
-        public string SolutionToString()
-        {
-            UpdateStringRepresentation();
             return sb.ToString();
         }
 

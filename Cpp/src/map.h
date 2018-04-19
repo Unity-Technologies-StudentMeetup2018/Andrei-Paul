@@ -40,13 +40,8 @@ public:
 			// Skipping new line and eventual spaces at the end of line.
 		}
 
-		m_StartPoint = startPoint;
-		m_EndPoint = endPoint;
-	}
-
-	void ComputePath() 
-	{
-		// TODO: Implement solution here
+		m_StartPosition = startPoint;
+		m_GoalPosition = endPoint;
 	}
 
 	std::string SolutionToString()
@@ -68,9 +63,9 @@ public:
 		{
 			for (int32_t x = 0; x < kMapSize; ++x)
 			{
-				if (x == m_StartPoint.x && y == m_StartPoint.y)
+				if (x == m_StartPosition.x && y == m_StartPosition.y)
 					putchar(cellPath);
-				else if (x == m_EndPoint.x && y == m_EndPoint.y)
+				else if (x == m_GoalPosition.x && y == m_GoalPosition.y)
 					putchar(cellPath);
 				else
 				{
@@ -78,6 +73,7 @@ public:
 					{
 					case cellBlocked: putchar(cellBlocked); break;
 					case cellFree: putchar(cellFree); break;
+					case cellPath: putchar(cellPath); break;
 					default: putchar(cellInvalid); break;
 					}
 				}
@@ -86,11 +82,16 @@ public:
 		}
 	}
 
+	void ComputePath()
+	{
+		// TODO: Implement solution here
+	}
+
 private:
 
 	char m_MapData[kMapSize][kMapSize];
-	vector2 m_StartPoint;
-	vector2 m_EndPoint;
+	vector2 m_StartPosition;
+	vector2 m_GoalPosition;
 };
 
 
