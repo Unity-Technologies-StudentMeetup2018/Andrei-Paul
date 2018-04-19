@@ -11,7 +11,8 @@ namespace StudentMeetup2018
         BlockedStart,
         BlockedEnd,
         InvalidPath,
-        InvalidArgCount
+        InvalidArgCount,
+        UnableToFindPath
     }
 
     class Program
@@ -63,9 +64,11 @@ namespace StudentMeetup2018
             if (ErrCode.Success != code)
                 return (int)code;
 
-            MapSolution map = new MapSolution(mapData, startPoint, endPoint);
+            Map map = new Map(mapData, startPoint, endPoint);
 
-            map.ComputePath();
+            if (!map.ComputePath())
+                return (int)ErrCode.UnableToFindPath;
+
             map.DisplayMap();
 
             return (int)ErrCode.Success;
